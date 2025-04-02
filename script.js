@@ -1,25 +1,18 @@
-const http = require('http')
-const url = require('url')
+const express = require('express')
+const server = express()
+
 const { soma,subtracao } = require('./teste')
 const PORT = 8000
 
-//criar servidor
-const server = http.createServer((req,res) =>{
-    const urlCapturada = url.parse(req.url, true)
-    const {query,pathname} = urlCapturada
-    let resultado = 0
-    let mensagem = `O resultado é: ${resultado}`
-    if(pathname == '/soma'){
-         resultado = soma(Number(query.a), Number(query.b))
-    }else if(pathname == '/subtracao'){
-         resultado = subtracao(Number(query.a), Number(query.b))
-    }else{
-        res.statusCode = 404
-        mensagem = 'Pagina nao encontrada'
-        }
-       res.end(mensagem)
+//criar rotas no express
+server.get('/soma', (req,res) => {
+    //let resultado = soma(req.query.a, req.query.b)
+    res.send(`aqui vai o resultado da minha soma`)
 })
-
+server.get('/subtracao', (req,res) => {
+    //let resultado = soma(req.query.a, req.query.b)
+    res.send(`aqui vai o resultado da minha subtracao`)
+})
 //fazer ele ouvir na porta 8000
 server.listen(PORT, () => {
     console.log(`O servidor foi inicializado na porta ${PORT}`)
