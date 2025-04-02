@@ -15,7 +15,7 @@ const server = http.createServer((req,res) =>{
          resultado = subtracao(Number(query.a), Number(query.b))
     }else{
         res.statusCode = 404
-        mensagem = 'Pafina nao encontrada'
+        mensagem = 'Pagina nao encontrada'
         }
        res.end(mensagem)
 })
